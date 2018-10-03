@@ -20,3 +20,12 @@ The metric used to evaluate the results was the SMAPE:
 The sales of the different items had a strong seasonality and a similar behaviour between stores and items, some of this sales are shown in the next graph:
 
 ![alt text](https://github.com/jgonzalezab/Store-Item-Demand-Forecasting/blob/master/Images/sales_example.png "Sales Examples")
+
+The approach I followed was the following:
+* Extract date features (day, month, day of week, quarter...) and use them as independent variables in the model
+* Select relevant features iterating through different combinations
+* Fit an XGB and lightGBM model by item (collapsing the stores)
+* Search optimal hyperparameters through iterations
+* Multiply the final predictions by 1.03 (magic number) and ensemble them
+
+This approached is machine-learning based and obtained a 13.99955 SMAPE (137/462) on the public leaderboard and a **12.67808 SMAPE on the private leaderboard (93/462)**. The winner achieved a 12.58015 SMAPE on the private leaderboard. Finnaly, some graphs with the predictions are shown below:
